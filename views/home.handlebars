@@ -1,0 +1,26 @@
+<br>
+<ul class="nav">
+    <a class="navbar-brand" href="/">News_Note</a>
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/saved">Saved Articles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/scrape">Get New Articles!</a>
+    </li>
+</ul>
+
+<h1 style="text-align: center;">Get San Diego's latest news, right here!</h1>
+
+<hr />
+{{#each articles}}
+<h3>{{this.title}}</h3>
+<p>{{this.summary}}</p>
+<a href={{this.url}}>Go To Article</a>
+<br>
+<br>
+<button type="submit">Save Article</button>
+<hr />
+{{/each}}
