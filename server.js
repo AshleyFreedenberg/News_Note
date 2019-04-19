@@ -43,6 +43,15 @@ app.get("/saved", (req, res) => {
         });
 })
 
+app.get("/delete", (req, res) => {
+    db.Article
+        .find({})
+        .populate("comments")
+        .then(dbArticles => {
+            res.render("saved", { articles: dbArticles });
+        });
+})
+
 app.get("/scrape", (req, res) => {
     axios
         .get("https://www.nbcsandiego.com/news/local/")
@@ -70,7 +79,6 @@ app.get("/scrape", (req, res) => {
         });
 });
 
-
 app.post("/api/:articleId/comment", (req, res) => {
     db.Comment
         .create({body: req.body.body})
@@ -80,8 +88,6 @@ app.post("/api/:articleId/comment", (req, res) => {
         .then(() => res.redirect("/saved"))
         .catch(err => res.json(err));
 });
-
-
 
 
 app.listen(PORT, () => console.log(`App is on http://localhost:${PORT}`));
